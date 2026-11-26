@@ -18,3 +18,49 @@
     --DataGrid-containerBackground: #f0f3f8;
   }
 }
+
+@layer utilities {
+  .campos-filtro-movimientos .MuiOutlinedInput-root {
+    @apply min-h-[38px] rounded-lg;
+  }
+
+  .campos-filtro-movimientos .MuiOutlinedInput-notchedOutline {
+    @apply rounded-lg border border-[#aebad1];
+  }
+
+  .campos-filtro-movimientos .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    @apply border-slate-500;
+  }
+
+  .campos-filtro-movimientos .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    @apply border-2 border-blue-600;
+  }
+
+  .campos-filtro-movimientos .MuiInputBase-input:not([type="date"]) {
+    @apply px-3.5;
+  }
+
+  .campos-filtro-movimientos .MuiSelect-select {
+    @apply pr-8;
+  }
+
+  .campos-filtro-movimientos .MuiInputBase-inputAdornedStart {
+    @apply pl-1;
+  }
+
+  .campos-filtro-movimientos .MuiInputAdornment-positionStart {
+    @apply ml-3.5;
+  }
+
+  .campos-filtro-movimientos input::placeholder {
+    @apply text-slate-600 opacity-100;
+  }
+
+  .campos-filtro-movimientos input[type="number"] {
+    appearance: textfield;
+  }
+
+  .campos-filtro-movimientos input[type="number"]::-webkit-inner-spin-button {
+    appearance: none;
+  }
+}

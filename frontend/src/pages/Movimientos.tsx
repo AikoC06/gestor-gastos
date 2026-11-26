@@ -253,7 +253,9 @@ export default function Movimientos() {
         />
       </section>
 
-      {filtrosAbiertos && <FiltrosMovimientos filtros={filtros} onAplicar={aplicarFiltros} onCerrar={() => setFiltrosAbiertos(false)} />}
+      {filtrosAbiertos && <FiltrosMovimientos filtros={filtros}
+        bancos={[...new Set((resultado?.movimientos ?? []).flatMap(({ banco }) => banco ? [banco] : []))].sort()}
+        onAplicar={aplicarFiltros} onCerrar={() => setFiltrosAbiertos(false)} />}
       {formulario && <GastoForm open gasto={formulario.gasto} onClose={() => setFormulario(undefined)} onSubmit={guardarMovimiento} />}
 
       <Dialog open={Boolean(confirmacion)} onClose={() => { if (!eliminando) setConfirmacion(undefined) }}
