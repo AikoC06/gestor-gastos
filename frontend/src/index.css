@@ -64,3 +64,21 @@
     appearance: none;
   }
 }
+
+@layer utilities {
+  .formulario-suscripcion .MuiOutlinedInput-notchedOutline {
+    @apply rounded-lg border border-slate-300;
+  }
+
+  .formulario-suscripcion .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    @apply border-2 border-blue-600;
+  }
+
+  .formulario-suscripcion .MuiInputBase-input {
+    @apply px-3;
+  }
+
+  .formulario-suscripcion .MuiSelect-select {
+    @apply pr-8;
+  }
+}

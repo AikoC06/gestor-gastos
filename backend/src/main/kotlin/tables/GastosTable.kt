@@ -2,6 +2,7 @@ package com.gestorgastos.tables
 
 import com.gestorgastos.enums.TipoTarjeta
 import com.gestorgastos.enums.OrigenMovimiento
+import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.javatime.date
 import org.jetbrains.exposed.sql.javatime.datetime
@@ -39,6 +40,8 @@ object GastosTable : Table("gastos") {
 
     val fechaRegistro = datetime("fecha_registro")
         .defaultExpression(CurrentDateTime)
+
+    val suscripcionId = optReference("suscripcion_id", SuscripcionesTable.id, onDelete = ReferenceOption.SET_NULL)
 
     override val primaryKey = PrimaryKey(id)
 }

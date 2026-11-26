@@ -1,6 +1,7 @@
 package com.gestorgastos.config
 
 import com.gestorgastos.tables.GastosTable
+import com.gestorgastos.tables.SuscripcionesTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import org.jetbrains.exposed.sql.Database
@@ -8,6 +9,16 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object DatabaseFactory {
+
+    fun prepararEsquema() = transaction {
+        SchemaUtils.create(SuscripcionesTable, GastosTable)
+        exec(
+            """
+            ALTER TABLE gastos ADD COLUMN IF NOT EXISTS suscripcion_id INTEGER
+                REFERENCES suscripciones(id) ON DELETE SET NULL
+            """.trimIndent()
+        )
+    }
 
     fun init() {
         val config = HikariConfig().apply {
@@ -22,9 +33,7 @@ object DatabaseFactory {
 
         Database.connect(dataSource)
 
-        transaction {
-            SchemaUtils.create(GastosTable)
-        }
+        prepararEsquema()
 
         println("PostgreSQL conectado correctamente")
     }
