@@ -1,0 +1,8 @@
+ktor:
+  deployment:
+    port: 8080
+  application:
+    modules:
+      - com.gestorgastos.HttpKt.configureHttp
+      - com.gestorgastos.SerializationKt.configureSerialization
+      - com.gestorgastos.RoutingKt.configureRouting

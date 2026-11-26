@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.gestorgastos.GastosRoutesTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-26T04:36:47.903Z" hostname="Aikos-MacBook-Pro.local" time="0.478">
+  <properties/>
+  <testcase name="la edicion y la eliminacion rechazan datos invalidos antes de escribir" classname="com.gestorgastos.GastosRoutesTest" time="0.455"/>
+  <testcase name="la consulta rechaza filtros y paginacion invalidos" classname="com.gestorgastos.GastosRoutesTest" time="0.021"/>
+  <system-out><![CDATA[2026-11-25 22:36:48.238 [DefaultDispatcher-worker-2 @call-context#3] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-11-25 22:36:48.272 [DefaultDispatcher-worker-2 @call-context#3] INFO  io.ktor.test - Application started in 0.041 seconds.
+2026-11-25 22:36:48.275 [DefaultDispatcher-worker-3 @coroutine#5] INFO  io.ktor.test - Responding at http://localhost:80
+2026-11-25 22:36:48.276 [DefaultDispatcher-worker-3 @coroutine#5] INFO  io.ktor.test - Responding at https://localhost:443
+2026-11-25 22:36:48.363 [DefaultDispatcher-worker-3 @call-context#31] INFO  io.ktor.test - No ktor.deployment.watch patterns specified, automatic reload is not active.
+2026-11-25 22:36:48.364 [DefaultDispatcher-worker-3 @call-context#31] INFO  io.ktor.test - Application started in 0.001 seconds.
+2026-11-25 22:36:48.364 [DefaultDispatcher-worker-5 @coroutine#33] INFO  io.ktor.test - Responding at http://localhost:80
+2026-11-25 22:36:48.364 [DefaultDispatcher-worker-5 @coroutine#33] INFO  io.ktor.test - Responding at https://localhost:443
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

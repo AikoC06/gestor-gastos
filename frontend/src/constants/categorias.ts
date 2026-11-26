@@ -1,0 +1,15 @@
+export const CATEGORIAS = [
+  'Alimentación',
+  'Transporte',
+  'Suscripciones',
+  'Compras',
+  'Supermercado',
+  'Salud',
+  'Entretenimiento',
+  'Educación',
+  'Servicios',
+  'Mascotas',
+  'Hogar',
+  'Otros',
+  'Sin clasificar',
+]
