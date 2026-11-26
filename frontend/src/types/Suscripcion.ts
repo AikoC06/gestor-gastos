@@ -31,3 +31,21 @@ export interface ResumenSuscripciones {
   costoAnual: string
   proximosCobros: { suscripcionId: number; nombre: string; fecha: string; monto: string }[]
 }
+
+export interface SugerenciaSuscripcion {
+  id: string
+  nombre: string
+  comercioNormalizado: string
+  montoEstimado: string
+  frecuenciaEstimada: FrecuenciaSuscripcion | null
+  ultimoCobro: string
+  proximoCobroEstimado: string | null
+  banco: string | null
+  tipoTarjeta: Gasto['tipoTarjeta']
+  ultimosDigitos: string | null
+  movimientosIds: number[]
+  cantidadMovimientos: number
+  confianza: 'ALTA' | 'MEDIA' | 'BAJA'
+  motivos: string[]
+  movimientos: { id: number; comercio: string; fechaCargo: string; monto: string }[]
+}

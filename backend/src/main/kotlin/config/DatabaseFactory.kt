@@ -1,5 +1,6 @@
 package com.gestorgastos.config
 
+import com.gestorgastos.tables.DecisionesSuscripcionTable
 import com.gestorgastos.tables.GastosTable
 import com.gestorgastos.tables.SuscripcionesTable
 import com.zaxxer.hikari.HikariConfig
@@ -11,7 +12,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 object DatabaseFactory {
 
     fun prepararEsquema() = transaction {
-        SchemaUtils.create(SuscripcionesTable, GastosTable)
+        SchemaUtils.create(SuscripcionesTable, GastosTable, DecisionesSuscripcionTable)
         exec(
             """
             ALTER TABLE gastos ADD COLUMN IF NOT EXISTS suscripcion_id INTEGER

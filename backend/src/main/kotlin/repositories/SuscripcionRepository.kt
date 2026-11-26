@@ -1,6 +1,7 @@
 package com.gestorgastos.repositories
 
 import com.gestorgastos.enums.EstadoSuscripcion
+import com.gestorgastos.enums.OrigenSuscripcion
 import com.gestorgastos.models.GuardarSuscripcionRequest
 import com.gestorgastos.models.Suscripcion
 import com.gestorgastos.tables.SuscripcionesTable
@@ -17,24 +18,32 @@ class SuscripcionRepository {
 
     suspend fun listar(estado: EstadoSuscripcion? = null): List<Suscripcion> =
         newSuspendedTransaction(Dispatchers.IO) {
-            SuscripcionesTable.selectAll()
-                .apply { if (estado != null) where { SuscripcionesTable.estado eq estado } }
-                .orderBy(SuscripcionesTable.nombre to SortOrder.ASC, SuscripcionesTable.id to SortOrder.ASC)
-                .map(::aSuscripcion)
+            listarEnTransaccion(estado)
         }
+
+    internal fun listarEnTransaccion(estado: EstadoSuscripcion? = null): List<Suscripcion> =
+        SuscripcionesTable.selectAll()
+            .apply { if (estado != null) where { SuscripcionesTable.estado eq estado } }
+            .orderBy(SuscripcionesTable.nombre to SortOrder.ASC, SuscripcionesTable.id to SortOrder.ASC)
+            .map(::aSuscripcion)
 
     suspend fun obtener(id: Int): Suscripcion? =
         newSuspendedTransaction(Dispatchers.IO) { buscar(id) }
 
     suspend fun crear(datos: GuardarSuscripcionRequest): Suscripcion =
         newSuspendedTransaction(Dispatchers.IO) {
-            val ahora = LocalDateTime.now(ZoneOffset.UTC)
-            val id = SuscripcionesTable.insert {
-                it.asignar(datos, ahora)
-                it[createdAt] = ahora
-            } get SuscripcionesTable.id
-            checkNotNull(buscar(id))
+            crearEnTransaccion(datos, OrigenSuscripcion.MANUAL)
         }
+
+    internal fun crearEnTransaccion(datos: GuardarSuscripcionRequest, origenAlta: OrigenSuscripcion): Suscripcion {
+        val ahora = LocalDateTime.now(ZoneOffset.UTC)
+        val id = SuscripcionesTable.insert {
+            it.asignar(datos, ahora)
+            it[origen] = origenAlta
+            it[createdAt] = ahora
+        } get SuscripcionesTable.id
+        return checkNotNull(buscar(id))
+    }
 
     suspend fun actualizar(id: Int, datos: GuardarSuscripcionRequest): Suscripcion? =
         newSuspendedTransaction(Dispatchers.IO) {

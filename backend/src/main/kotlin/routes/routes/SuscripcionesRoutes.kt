@@ -12,6 +12,7 @@ fun Route.suscripcionesRoutes() {
     val servicio = SuscripcionService()
 
     route("/suscripciones") {
+        sugerenciasSuscripcionRoutes()
         get { call.respond(servicio.listar()) }
 
         get("/resumen") { call.respond(servicio.resumen()) }
